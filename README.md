@@ -1,4 +1,4 @@
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FGerardTo%2Fazure-openttdserver%2Fmain%2FAzureDeploy.json%3Ftoken%3DAAEJNPOU4TDCXA6DJ5LVYYC7TSNT6)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FGerardTo%2Fopenttdserver-azure%2Fmain%2FazureDeploy.json)
 
 # Description
 Deploy an [OpenTTD](https://www.openttd.org/) server to Azure.
