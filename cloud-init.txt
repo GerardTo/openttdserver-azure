@@ -1,0 +1,57 @@
+#cloud-config
+
+package_update: true
+package_upgrade: true
+package_reboot_if_required: true
+
+write_files:
+  - path: /etc/update-openttdconf.sh
+    permissions: '0755'
+    content: |
+      #!/bin/bash
+      # Array with values to update in the configuration file
+      # Format: <config header>|<config key>|<new value>
+      declare -a updates
+      updates+=("network|server_name|My OpenTTD 1.10.3 Server")
+      updates+=("network|rcon_password|icontrol")
+      updates+=("locale|currency|NLG")
+      updates+=("currency|to_euro|1")  
+      #updates+=("network|server_password|letmein")      
+      # Initialise cfg
+      /usr/games/openttd -D -f -c /usr/share/openttd/openttd.cfg
+      sleep 5
+      killall openttd
+      sleep 5
+      # Target File
+      FILE="/usr/share/openttd/openttd.cfg"
+      # Wait for file or timeout
+      timeout=120
+      while [ ! -f $FILE ];
+      do
+      # When the timeout is equal to zero, show an error and leave the loop.
+      if [ "$timeout" == 0 ]; then
+      echo "ERROR: Timeout while waiting for the file ${FILE}."
+      exit 1
+      fi
+      sleep 2
+      ((timeout--))
+      done
+      # Loop through array and replace values
+      for update in "${updates[@]}"
+      do
+        IFS="|" read -r -a arr <<< "${update}"
+        sed -i '/\['${arr[0]}'\]/,/^$/ s/^\('${arr[1]}' = \).*/\1'"${arr[2]}"'/' $FILE 
+      done
+    
+runcmd:
+  - mkdir /var/apt -p
+  - wget https://cdn.openttd.org/openttd-releases/1.10.3/openttd-1.10.3-linux-ubuntu-bionic-amd64.deb -P /var/apt
+  - apt install -y /var/apt/*.deb
+  - /etc/update-openttdconf.sh
+  - /usr/games/openttd -D -f -c /usr/share/openttd/openttd.cfg
+  - apt autoremove --purge
+  - apt clean
+  
+timezone: Europe/Amsterdam
+
+final_message: "The system is finally up, after $UPTIME seconds. Happy gaming!"
