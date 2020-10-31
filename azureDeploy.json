@@ -106,7 +106,7 @@
           ]
         }
       },
-      "customData": "[concat('#include\n','https://raw.githubusercontent.com/GerardTo/azure-openttdserver/main/cloud-init.txt')]"
+      "customData": "[concat('#include\n','https://raw.githubusercontent.com/GerardTo/openttdserver-azure/main/cloud-init.txt')]"
     },
     "resources": [
       {
