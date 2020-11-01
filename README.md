@@ -18,12 +18,13 @@ The template is based on the [Linux Simple VM](https://github.com/Azure/azure-qu
 - Run the server
 
 ## Server Settings
-| Header        | Setting       | Value                    |
-|---------------|---------------|--------------------------|
-| network       | server_name   | My OpenTTD 1.10.3 Server |
-| network       | rcon_password | icontrol                 |
-| locale        | currency      | NLG                      |
-| currency      | to_euro       | 1                        |
+| Header        | Setting            | Value                    |
+|---------------|--------------------|--------------------------|
+| network       | server_name        | My OpenTTD 1.10.3 Server |
+| network       | rcon_password      | icontrol                 |
+| network       | min_active_clients | 1                        |
+| locale        | currency           | NLG                      |
+| currency      | to_euro            | 1                        |
 
 # Usage
 ## Pre-requisites
