@@ -16,6 +16,7 @@ write_files:
       updates+=("network|rcon_password|icontrol")
       updates+=("locale|currency|NLG")
       updates+=("currency|to_euro|1")  
+      updates+=("network|min_active_clients|1")
       #updates+=("network|server_password|letmein")      
       # Initialise cfg
       /usr/games/openttd -D -f -c /usr/share/openttd/openttd.cfg
